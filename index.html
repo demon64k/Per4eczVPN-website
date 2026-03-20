@@ -1,0 +1,940 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Per4eczVPN | Hiddify Client</title>
+    <style>
+        :root {
+            --primary: #6c5ce7;
+            --secondary: #a29bfe;
+            --bg-dark: #0f0f13;
+            --bg-card: #1b1b23;
+            --text-main: #ffffff;
+            --text-muted: #b2bec3;
+            --accent: #00cec9;
+            --windows: #00a4ef;
+            --android: #3ddc84;
+            --apple: #007aff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            line-height: 1.6;
+        }
+
+        /* Header */
+        header {
+            padding: 20px 5%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: rgba(15, 15, 19, 0.95);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid #2d2d3a;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo span { color: var(--text-main); }
+        
+        .logo-icon {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding: 80px 20px;
+            background: radial-gradient(circle at center, #2d2d3a 0%, var(--bg-dark) 70%);
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            background: linear-gradient(to right, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            color: var(--text-muted);
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto 40px;
+        }
+
+        .download-box {
+            background: var(--bg-card);
+            padding: 30px;
+            border-radius: 15px;
+            display: inline-block;
+            border: 1px solid #2d2d3a;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        .btn-large {
+            display: block;
+            background: linear-gradient(45deg, var(--primary), var(--accent));
+            color: white;
+            padding: 15px 40px;
+            font-size: 1.2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            margin: 10px 0;
+            font-weight: bold;
+            transition: 0.3s;
+            box-shadow: 0 5px 15px rgba(108, 92, 231, 0.4);
+        }
+
+        .btn-large:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 25px rgba(108, 92, 231, 0.6);
+        }
+
+        /* Platform Buttons */
+        .platform-buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 30px;
+        }
+
+        .platform-btn {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 25px;
+            border-radius: 10px;
+            text-decoration: none;
+            color: white;
+            font-weight: 600;
+            transition: all 0.3s;
+            border: 2px solid transparent;
+        }
+
+        .platform-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+        }
+
+        .platform-btn.windows {
+            background: var(--windows);
+        }
+
+        .platform-btn.windows:hover {
+            border-color: var(--windows);
+            background: transparent;
+        }
+
+        .platform-btn.android {
+            background: var(--android);
+            color: #000;
+        }
+
+        .platform-btn.android:hover {
+            border-color: var(--android);
+            background: transparent;
+            color: var(--android);
+        }
+
+        .platform-btn.ios {
+            background: var(--apple);
+        }
+
+        .platform-btn.ios:hover {
+            border-color: var(--apple);
+            background: transparent;
+        }
+
+        .platform-icon {
+            width: 24px;
+            height: 24px;
+        }
+
+        /* Pricing Section */
+        .pricing {
+            padding: 60px 5%;
+            background: linear-gradient(135deg, rgba(108, 92, 231, 0.15) 0%, rgba(0, 206, 201, 0.1) 100%);
+            border-top: 1px solid #2d2d3a;
+            border-bottom: 1px solid #2d2d3a;
+        }
+
+        .pricing-container {
+            max-width: 700px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .pricing-card {
+            background: var(--bg-card);
+            padding: 40px;
+            border-radius: 20px;
+            border: 2px solid var(--primary);
+            box-shadow: 0 10px 40px rgba(108, 92, 231, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .pricing-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(108, 92, 231, 0.1), transparent);
+            transform: rotate(45deg);
+            animation: shine 3s infinite;
+        }
+
+        @keyframes shine {
+            0% { transform: translateX(-100%) rotate(45deg); }
+            100% { transform: translateX(100%) rotate(45deg); }
+        }
+
+        .pricing-header {
+            margin-bottom: 30px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .pricing-header h2 {
+            font-size: 2rem;
+            margin-bottom: 10px;
+            color: var(--text-main);
+        }
+
+        .pricing-header p {
+            color: var(--text-muted);
+        }
+
+        .price-comparison {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin: 25px 0;
+            position: relative;
+            z-index: 1;
+        }
+
+        .price-item {
+            text-align: center;
+            padding: 20px;
+            background: rgba(108, 92, 231, 0.1);
+            border-radius: 12px;
+            min-width: 140px;
+        }
+
+        .price-value {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: var(--accent);
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .price-label {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        .price-equals {
+            font-size: 2rem;
+            color: var(--secondary);
+            font-weight: bold;
+        }
+
+        .pricing-note {
+            margin-top: 25px;
+            padding: 15px 20px;
+            background: rgba(0, 206, 201, 0.1);
+            border-left: 4px solid var(--accent);
+            border-radius: 8px;
+            color: var(--text-main);
+            font-size: 1rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .pricing-note span {
+            color: var(--accent);
+            font-weight: 600;
+        }
+
+        /* Referral Section */
+        .referral {
+            padding: 60px 5%;
+            background: linear-gradient(135deg, rgba(108, 92, 231, 0.1) 0%, rgba(0, 206, 201, 0.1) 100%);
+            border-top: 1px solid #2d2d3a;
+            border-bottom: 1px solid #2d2d3a;
+        }
+
+        .referral-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .referral-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .referral-header h2 {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            background: linear-gradient(to right, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .referral-header p {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+        }
+
+        .gift-icon {
+            width: 50px;
+            height: 50px;
+            color: var(--primary);
+        }
+
+        .how-it-works {
+            background: var(--bg-card);
+            padding: 30px;
+            border-radius: 12px;
+            border: 1px solid #2d2d3a;
+        }
+
+        .how-it-works h3 {
+            color: var(--secondary);
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.5rem;
+        }
+
+        .steps {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .step-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+        }
+
+        .step-number {
+            background: linear-gradient(45deg, var(--primary), var(--accent));
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            flex-shrink: 0;
+            font-size: 1.1rem;
+        }
+
+        .step-text {
+            color: var(--text-muted);
+            padding-top: 8px;
+        }
+
+        .bonus-note {
+            margin-top: 25px;
+            padding: 15px;
+            background: rgba(0, 206, 201, 0.1);
+            border-left: 4px solid var(--accent);
+            border-radius: 8px;
+            color: var(--text-main);
+            font-weight: 600;
+        }
+
+        /* Features */
+        .features {
+            padding: 60px 5%;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .card {
+            background: var(--bg-card);
+            padding: 30px;
+            border-radius: 12px;
+            border: 1px solid #2d2d3a;
+            transition: 0.3s;
+        }
+
+        .card:hover {
+            border-color: var(--primary);
+            transform: translateY(-5px);
+        }
+
+        .card h3 {
+            color: var(--secondary);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 1.3rem;
+        }
+
+        .feature-icon {
+            width: 32px;
+            height: 32px;
+            color: var(--primary);
+        }
+
+        /* Support Section */
+        .support {
+            padding: 80px 5%;
+            background: linear-gradient(180deg, #0f0f13 0%, #15151a 100%);
+            border-top: 1px solid #2d2d3a;
+        }
+
+        .support-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .support-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .support-header h2 {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            background: linear-gradient(to right, #74b9ff, var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .support-header p {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+        }
+
+        .support-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .support-card {
+            background: var(--bg-card);
+            padding: 40px 30px;
+            border-radius: 16px;
+            border: 1px solid #2d2d3a;
+            transition: all 0.3s ease;
+            text-align: center;
+            cursor: pointer;
+        }
+
+        .support-card:hover {
+            border-color: var(--primary);
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(108, 92, 231, 0.2);
+        }
+
+        .support-icon-wrapper {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 25px;
+            background: rgba(108, 92, 231, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .support-icon {
+            width: 40px;
+            height: 40px;
+            color: var(--primary);
+        }
+
+        .support-card h3 {
+            color: var(--text-main);
+            margin-bottom: 15px;
+            font-size: 1.4rem;
+        }
+
+        .support-card p {
+            color: var(--text-muted);
+            line-height: 1.6;
+        }
+
+        /* FAQ Items */
+        .faq-section {
+            background: var(--bg-card);
+            padding: 40px;
+            border-radius: 16px;
+            border: 1px solid #2d2d3a;
+        }
+
+        .faq-section h3 {
+            color: var(--secondary);
+            margin-bottom: 25px;
+            font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .faq-item {
+            margin-bottom: 25px;
+            padding: 20px;
+            background: rgba(108, 92, 231, 0.05);
+            border-left: 4px solid var(--primary);
+            border-radius: 8px;
+        }
+
+        .faq-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .faq-question {
+            font-weight: 600;
+            color: var(--text-main);
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .faq-answer {
+            color: var(--text-muted);
+            line-height: 1.6;
+            padding-left: 28px;
+        }
+
+        .faq-answer a {
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .faq-answer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Instructions */
+        .instructions {
+            padding: 60px 5%;
+            background: #0f0f13;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .step {
+            margin-bottom: 20px;
+            display: flex;
+            align-items: flex-start;
+        }
+
+        .step-num {
+            background: var(--primary);
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin-right: 15px;
+            flex-shrink: 0;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 40px;
+            color: var(--text-muted);
+            border-top: 1px solid #2d2d3a;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2rem; }
+            .logo { font-size: 1.2rem; }
+            .platform-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            .platform-btn {
+                width: 100%;
+                max-width: 300px;
+                justify-content: center;
+            }
+            .referral-header h2 { font-size: 2rem; flex-direction: column; }
+            .support-grid { grid-template-columns: 1fr; }
+            .faq-section { padding: 25px; }
+            .price-comparison { flex-direction: column; gap: 10px; }
+            .price-equals { transform: rotate(90deg); }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">
+            <img src="https://yt3.googleusercontent.com/bCXoW3K93BTMgOrssg2dqlE9UKoy9JiI-1G0M_qI5-sRRTQ6F5Ik0fYDmJg8leoaMVXr98xHWck=s900-c-k-c0x00ffffff-no-rj" alt="Per4eczVPN" class="logo-icon">
+            <div>Per4ecz<span>VPN</span></div>
+        </div>
+    </header>
+
+    <section class="hero">
+        <h1>Свободный интернет с Hiddify</h1>
+        <p>Быстрый, безопасный и стабильный доступ к сети. Используйте конфигурации Per4eczVPN на лучшем клиенте.</p>
+        
+        <div class="download-box" id="download">
+            <h3>Подключить подписку</h3>
+            <p style="color: #b2bec3; margin-bottom: 20px; font-size: 0.9rem;">
+                Нажмите кнопку ниже, чтобы автоматически открыть приложение и добавить сервер.
+            </p>
+            
+            <a href="https://t.me/per4eczvpn_bot" class="btn-large">
+                Подключить Per4eczVPN
+            </a>
+
+            <h4 style="margin: 30px 0 20px; color: var(--text-main);">Скачать Hiddify</h4>
+            <div class="platform-buttons">
+                <a href="https://github.com/hiddify/hiddify-app/releases" target="_blank" class="platform-btn windows">
+                    <svg class="platform-icon" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M0 3.449L9.75 2.1v9.451H0m10.949-9.602L24 0v11.4H10.949M0 12.6h9.75v9.451L0 20.55M10.949 12.6H24V24l-12.9-1.801"/>
+                    </svg>
+                    Windows
+                </a>
+                
+                <a href="https://github.com/hiddify/hiddify-app/releases" target="_blank" class="platform-btn android">
+                    <svg class="platform-icon" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M17.523 15.3414c-.5511 0-.9993-.4486-.9993-.9997s.4482-.9993.9993-.9993c.5511 0 .9993.4482.9993.9993s-.4482.9997-.9993.9997m-11.046 0c-.5511 0-.9993-.4486-.9993-.9997s.4482-.9993.9993-.9993c.5511 0 .9993.4482.9993.9993s-.4482.9997-.9993.9997m11.4045-6.02l1.9973-3.4592a.416.416 0 00-.1521-.567.416.416 0 00-.567.1521l-2.0225 3.503C15.5902 8.4706 13.8533 8.1801 12 8.1801s-3.5902.2905-5.1375.8697L4.84 5.5466a.416.416 0 00-.567-.1521.4156.4156 0 00-.1521.567l1.9973 3.4592C2.6889 11.1867.3432 14.6589.3432 18.6617h23.3136c0-4.0028-2.3457-7.475-5.7773-9.3403"/>
+                    </svg>
+                    Android
+                </a>
+                
+                <a href="https://apps.apple.com/us/app/hiddify-proxy-vpn/id6596777532" target="_blank" class="platform-btn ios">
+                    <svg class="platform-icon" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.21-1.96 1.07-3.11-1.05.05-2.31.72-3.06 1.62-.68.78-1.28 2.05-1.11 3.15 1.19.09 2.38-.78 3.1-1.66"/>
+                    </svg>
+                    iOS
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section class="pricing">
+        <div class="pricing-container">
+            <div class="pricing-card">
+                <div class="pricing-header">
+                    <h2>Стоимость подписки</h2>
+                    <p>Доступно каждому</p>
+                </div>
+                
+                <div class="price-comparison">
+                    <div class="price-item">
+                        <span class="price-value">1 месяц</span>
+                        <span class="price-label">Per4eczVPN</span>
+                    </div>
+                    <span class="price-equals">=</span>
+                    <div class="price-item">
+                        <span class="price-value">10-15 мин</span>
+                        <span class="price-label">разговора в Германии 🇩🇪</span>
+                    </div>
+                </div>
+                
+                <div class="pricing-note">
+                    Подписка на месяц стоит как <span>10-15 минут разговора по мобильной связи в Германии без тарифа</span> XD
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Referral Section -->
+    <section class="referral">
+        <div class="referral-container">
+            <div class="referral-header">
+                <h2>
+                    <svg class="gift-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="20 12 20 22 4 22 4 12"></polyline>
+                        <rect x="2" y="7" width="20" height="5"></rect>
+                        <line x1="12" y1="22" x2="12" y2="7"></line>
+                        <path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"></path>
+                        <path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"></path>
+                    </svg>
+                    Реферальная программа
+                </h2>
+                <p>Приглашай друзей и получай бесплатные дни подписки</p>
+            </div>
+
+            <div class="how-it-works">
+                <h3>
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
+                        <line x1="12" y1="17" x2="12.01" y2="17"></line>
+                    </svg>
+                    Как это работает?
+                </h3>
+                
+                <div class="steps">
+                    <div class="step-item">
+                        <div class="step-number">1</div>
+                        <div class="step-text">Создай реферальную ссылку в боте</div>
+                    </div>
+                    <div class="step-item">
+                        <div class="step-number">2</div>
+                        <div class="step-text">Поделись ей с друзьями</div>
+                    </div>
+                    <div class="step-item">
+                        <div class="step-number">3</div>
+                        <div class="step-text">Когда друг перейдет и активирует подписку — получишь <strong style="color: var(--accent)">+1 день</strong></div>
+                    </div>
+                </div>
+
+                <div class="bonus-note">
+                    💡 Бонусные дни добавляются к текущей подписке!
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features">
+        <div class="card">
+            <h3>
+                <svg class="feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+                </svg>
+                Быстро и стабильно
+            </h3>
+            <p>Наши серверы оптимизированы для максимальной скорости загрузки и стабильного соединения без обрывов.</p>
+        </div>
+        <div class="card">
+            <h3>
+                <svg class="feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                    <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                </svg>
+                Полная анонимность
+            </h3>
+            <p>Мы не ведем логи вашей активности. Используется современное шифрование протокола VLESS.</p>
+        </div>
+        <div class="card">
+            <h3>
+                <svg class="feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <line x1="2" y1="12" x2="22" y2="12"></line>
+                    <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+                </svg>
+                Смена региона
+            </h3>
+            <p>Регион можно сменить в разделе "Моя подписка". Доступны серверы в разных странах мира.</p>
+        </div>
+        <div class="card">
+            <h3>
+                <svg class="feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="20 12 20 22 4 22 4 12"></polyline>
+                    <rect x="2" y="7" width="20" height="5"></rect>
+                    <line x1="12" y1="22" x2="12" y2="7"></line>
+                    <path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"></path>
+                    <path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"></path>
+                </svg>
+                Пробный период
+            </h3>
+            <p>В боте есть пробный период. Протестируйте сервис перед покупкой полной подписки.</p>
+        </div>
+    </section>
+
+    <!-- Support Section -->
+    <section class="support">
+        <div class="support-container">
+            <div class="support-header">
+                <h2>Нужна помощь?</h2>
+                <p>Мы всегда готовы помочь вам</p>
+            </div>
+            
+            <div class="support-grid">
+                <div class="support-card" onclick="document.getElementById('faq').scrollIntoView({behavior: 'smooth'})">
+                    <div class="support-icon-wrapper">
+                        <svg class="support-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
+                            <line x1="12" y1="17" x2="12.01" y2="17"></line>
+                        </svg>
+                    </div>
+                    <h3>FAQ</h3>
+                    <p>Ответы на часто задаваемые вопросы</p>
+                </div>
+                
+                <div class="support-card" onclick="window.open('https://t.me/f1nerd', '_blank')">
+                    <div class="support-icon-wrapper">
+                        <svg class="support-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                            <path d="M8 10h.01"></path>
+                            <path d="M12 10h.01"></path>
+                            <path d="M16 10h.01"></path>
+                        </svg>
+                    </div>
+                    <h3>Поддержка</h3>
+                    <p>Свяжитесь с нами в Telegram</p>
+                </div>
+            </div>
+
+            <div class="faq-section" id="faq">
+                <h3>
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--primary);">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
+                        <line x1="12" y1="17" x2="12.01" y2="17"></line>
+                    </svg>
+                    Часто задаваемые вопросы
+                </h3>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <path d="M12 16v-4"></path>
+                            <path d="M12 8h.01"></path>
+                        </svg>
+                        Не работает ключ
+                    </div>
+                    <div class="faq-answer">
+                        Перезагрузите телефон или переустановите приложение Hiddify. Это помогает в большинстве случаев.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <path d="M12 16v-4"></path>
+                            <path d="M12 8h.01"></path>
+                        </svg>
+                        Если ВПН не работает
+                    </div>
+                    <div class="faq-answer">
+                        Если VPN не работает после перезагрузки, напишите нам: <a href="https://t.me/f1nerd" target="_blank">@f1nerd</a>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <path d="M12 16v-4"></path>
+                            <path d="M12 8h.01"></path>
+                        </svg>
+                        Как продлить подписку?
+                    </div>
+                    <div class="faq-answer">
+                        Перейдите в бот <a href="https://t.me/per4eczvpn_bot" target="_blank">@per4eczvpn_bot</a> и выберите опцию продления подписки.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Instructions Section -->
+    <section class="instructions">
+        <h2 class="section-title">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect>
+                <line x1="12" y1="18" x2="12.01" y2="18"></line>
+            </svg>
+            Как установить?
+        </h2>
+        
+        <div style="max-width: 800px; margin: 0 auto;">
+            <div class="step">
+                <div class="step-num">1</div>
+                <div>
+                    <h4>Скачайте приложение Hiddify</h4>
+                    <p style="color: var(--text-muted);">Установите официальный клиент <a href="https://github.com/hiddify/hiddify-app/releases" target="_blank" style="color: var(--primary);">Hiddify</a> для вашей операционной системы.</p>
+                </div>
+            </div>
+
+            <div class="step">
+                <div class="step-num">2</div>
+                <div>
+                    <h4>Получите подписку в боте</h4>
+                    <p style="color: var(--text-muted);">Перейдите в Telegram-бот, получите ссылку на подписку или пробный период.</p>
+                </div>
+            </div>
+
+            <div class="step">
+                <div class="step-num">3</div>
+                <div>
+                    <h4>Добавьте подписку в приложение</h4>
+                    <p style="color: var(--text-muted);">Скопируйте ссылку из бота и добавьте её в Hiddify через кнопку "Add Profile" → "From Clipboard".</p>
+                </div>
+            </div>
+
+            <div class="step">
+                <div class="step-num">4</div>
+                <div>
+                    <h4>Запустите соединение</h4>
+                    <p style="color: var(--text-muted);">В приложении выберите сервер и нажмите "Connect". Готово!</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>© 2026 Per4eczVPN. All rights reserved.</p>
+        <p style="margin-top: 10px; font-size: 0.8rem; opacity: 0.6;">
+            Данный сайт предоставляет доступ к инструментам для обхода блокировок. Используйте сервис ответственно.
+        </p>
+    </footer>
+
+</body>
+</html>
