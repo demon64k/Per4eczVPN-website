@@ -29,11 +29,12 @@
             background-color: var(--bg-dark);
             color: var(--text-main);
             line-height: 1.6;
+            overflow-x: hidden;
         }
 
         /* Header */
         header {
-            padding: 20px 5%;
+            padding: 15px 5%;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -45,7 +46,7 @@
         }
 
         .logo {
-            font-size: 1.5rem;
+            font-size: 1.3rem;
             font-weight: bold;
             color: var(--primary);
             text-transform: uppercase;
@@ -58,8 +59,8 @@
         .logo span { color: var(--text-main); }
         
         .logo-icon {
-            width: 32px;
-            height: 32px;
+            width: 28px;
+            height: 28px;
             border-radius: 50%;
             object-fit: cover;
         }
@@ -67,40 +68,49 @@
         /* Hero Section */
         .hero {
             text-align: center;
-            padding: 80px 20px;
+            padding: 60px 20px 40px;
             background: radial-gradient(circle at center, #2d2d3a 0%, var(--bg-dark) 70%);
         }
 
         .hero h1 {
-            font-size: 3rem;
-            margin-bottom: 20px;
+            font-size: 2.2rem;
+            margin-bottom: 15px;
             background: linear-gradient(to right, var(--primary), var(--accent));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            line-height: 1.2;
         }
 
         .hero p {
             color: var(--text-muted);
-            font-size: 1.2rem;
+            font-size: 1rem;
             max-width: 600px;
-            margin: 0 auto 40px;
+            margin: 0 auto 30px;
+            line-height: 1.5;
         }
 
         .download-box {
             background: var(--bg-card);
-            padding: 30px;
+            padding: 25px 20px;
             border-radius: 15px;
             display: inline-block;
             border: 1px solid #2d2d3a;
             box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            width: 100%;
+            max-width: 500px;
+        }
+
+        .download-box h3 {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
         }
 
         .btn-large {
             display: block;
             background: linear-gradient(45deg, var(--primary), var(--accent));
             color: white;
-            padding: 15px 40px;
-            font-size: 1.2rem;
+            padding: 15px 30px;
+            font-size: 1.1rem;
             border-radius: 50px;
             text-decoration: none;
             margin: 10px 0;
@@ -114,26 +124,37 @@
             box-shadow: 0 8px 25px rgba(108, 92, 231, 0.6);
         }
 
+        .download-box h4 {
+            margin: 25px 0 15px;
+            color: var(--text-main);
+            font-size: 1.1rem;
+        }
+
         /* Platform Buttons */
         .platform-buttons {
             display: flex;
-            gap: 15px;
+            gap: 10px;
             justify-content: center;
             flex-wrap: wrap;
-            margin-top: 30px;
+            margin-top: 20px;
         }
 
         .platform-btn {
             display: flex;
             align-items: center;
-            gap: 10px;
-            padding: 12px 25px;
+            justify-content: center;
+            gap: 8px;
+            padding: 12px 20px;
             border-radius: 10px;
             text-decoration: none;
             color: white;
             font-weight: 600;
             transition: all 0.3s;
             border: 2px solid transparent;
+            flex: 1;
+            min-width: 120px;
+            max-width: 150px;
+            font-size: 0.9rem;
         }
 
         .platform-btn:hover {
@@ -171,13 +192,13 @@
         }
 
         .platform-icon {
-            width: 24px;
-            height: 24px;
+            width: 20px;
+            height: 20px;
         }
 
         /* Pricing Section */
         .pricing {
-            padding: 60px 5%;
+            padding: 50px 5%;
             background: linear-gradient(135deg, rgba(108, 92, 231, 0.15) 0%, rgba(0, 206, 201, 0.1) 100%);
             border-top: 1px solid #2d2d3a;
             border-bottom: 1px solid #2d2d3a;
@@ -191,7 +212,7 @@
 
         .pricing-card {
             background: var(--bg-card);
-            padding: 40px;
+            padding: 30px 20px;
             border-radius: 20px;
             border: 2px solid var(--primary);
             box-shadow: 0 10px 40px rgba(108, 92, 231, 0.3);
@@ -217,42 +238,44 @@
         }
 
         .pricing-header {
-            margin-bottom: 30px;
+            margin-bottom: 25px;
             position: relative;
             z-index: 1;
         }
 
         .pricing-header h2 {
-            font-size: 2rem;
-            margin-bottom: 10px;
+            font-size: 1.6rem;
+            margin-bottom: 8px;
             color: var(--text-main);
         }
 
         .pricing-header p {
             color: var(--text-muted);
+            font-size: 0.95rem;
         }
 
         .price-comparison {
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 20px;
+            gap: 15px;
             flex-wrap: wrap;
-            margin: 25px 0;
+            margin: 20px 0;
             position: relative;
             z-index: 1;
         }
 
         .price-item {
             text-align: center;
-            padding: 20px;
+            padding: 15px;
             background: rgba(108, 92, 231, 0.1);
             border-radius: 12px;
-            min-width: 140px;
+            min-width: 120px;
+            flex: 1;
         }
 
         .price-value {
-            font-size: 1.8rem;
+            font-size: 1.5rem;
             font-weight: bold;
             color: var(--accent);
             display: block;
@@ -261,23 +284,23 @@
 
         .price-label {
             color: var(--text-muted);
-            font-size: 0.9rem;
+            font-size: 0.85rem;
         }
 
         .price-equals {
-            font-size: 2rem;
+            font-size: 1.5rem;
             color: var(--secondary);
             font-weight: bold;
         }
 
         .pricing-note {
-            margin-top: 25px;
-            padding: 15px 20px;
+            margin-top: 20px;
+            padding: 12px 15px;
             background: rgba(0, 206, 201, 0.1);
             border-left: 4px solid var(--accent);
             border-radius: 8px;
             color: var(--text-main);
-            font-size: 1rem;
+            font-size: 0.9rem;
             position: relative;
             z-index: 1;
         }
@@ -289,7 +312,7 @@
 
         /* Referral Section */
         .referral {
-            padding: 60px 5%;
+            padding: 50px 5%;
             background: linear-gradient(135deg, rgba(108, 92, 231, 0.1) 0%, rgba(0, 206, 201, 0.1) 100%);
             border-top: 1px solid #2d2d3a;
             border-bottom: 1px solid #2d2d3a;
@@ -302,99 +325,103 @@
 
         .referral-header {
             text-align: center;
-            margin-bottom: 40px;
+            margin-bottom: 30px;
         }
 
         .referral-header h2 {
-            font-size: 2.5rem;
-            margin-bottom: 15px;
+            font-size: 2rem;
+            margin-bottom: 10px;
             background: linear-gradient(to right, var(--primary), var(--accent));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 15px;
+            gap: 10px;
+            flex-wrap: wrap;
         }
 
         .referral-header p {
             color: var(--text-muted);
-            font-size: 1.1rem;
+            font-size: 1rem;
         }
 
         .gift-icon {
-            width: 50px;
-            height: 50px;
+            width: 40px;
+            height: 40px;
             color: var(--primary);
         }
 
         .how-it-works {
             background: var(--bg-card);
-            padding: 30px;
+            padding: 25px 20px;
             border-radius: 12px;
             border: 1px solid #2d2d3a;
         }
 
         .how-it-works h3 {
             color: var(--secondary);
-            margin-bottom: 25px;
+            margin-bottom: 20px;
             display: flex;
             align-items: center;
             gap: 10px;
-            font-size: 1.5rem;
+            font-size: 1.3rem;
+            flex-wrap: wrap;
         }
 
         .steps {
             display: flex;
             flex-direction: column;
-            gap: 20px;
+            gap: 15px;
         }
 
         .step-item {
             display: flex;
             align-items: flex-start;
-            gap: 15px;
+            gap: 12px;
         }
 
         .step-number {
             background: linear-gradient(45deg, var(--primary), var(--accent));
-            width: 35px;
-            height: 35px;
+            width: 30px;
+            height: 30px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             font-weight: bold;
             flex-shrink: 0;
-            font-size: 1.1rem;
+            font-size: 1rem;
         }
 
         .step-text {
             color: var(--text-muted);
-            padding-top: 8px;
+            padding-top: 5px;
+            font-size: 0.95rem;
         }
 
         .bonus-note {
-            margin-top: 25px;
-            padding: 15px;
+            margin-top: 20px;
+            padding: 12px;
             background: rgba(0, 206, 201, 0.1);
             border-left: 4px solid var(--accent);
             border-radius: 8px;
             color: var(--text-main);
             font-weight: 600;
+            font-size: 0.9rem;
         }
 
         /* Features */
         .features {
-            padding: 60px 5%;
+            padding: 50px 5%;
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
+            grid-template-columns: 1fr;
+            gap: 20px;
         }
 
         .card {
             background: var(--bg-card);
-            padding: 30px;
+            padding: 25px 20px;
             border-radius: 12px;
             border: 1px solid #2d2d3a;
             transition: 0.3s;
@@ -407,22 +434,27 @@
 
         .card h3 {
             color: var(--secondary);
-            margin-bottom: 15px;
+            margin-bottom: 12px;
             display: flex;
             align-items: center;
-            gap: 12px;
-            font-size: 1.3rem;
+            gap: 10px;
+            font-size: 1.2rem;
         }
 
         .feature-icon {
-            width: 32px;
-            height: 32px;
+            width: 28px;
+            height: 28px;
             color: var(--primary);
+        }
+
+        .card p {
+            font-size: 0.95rem;
+            line-height: 1.5;
         }
 
         /* Support Section */
         .support {
-            padding: 80px 5%;
+            padding: 60px 5%;
             background: linear-gradient(180deg, #0f0f13 0%, #15151a 100%);
             border-top: 1px solid #2d2d3a;
         }
@@ -434,12 +466,12 @@
 
         .support-header {
             text-align: center;
-            margin-bottom: 50px;
+            margin-bottom: 40px;
         }
 
         .support-header h2 {
-            font-size: 2.5rem;
-            margin-bottom: 15px;
+            font-size: 2rem;
+            margin-bottom: 10px;
             background: linear-gradient(to right, #74b9ff, var(--accent));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -447,19 +479,19 @@
 
         .support-header p {
             color: var(--text-muted);
-            font-size: 1.1rem;
+            font-size: 1rem;
         }
 
         .support-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 30px;
-            margin-bottom: 40px;
+            grid-template-columns: 1fr;
+            gap: 20px;
+            margin-bottom: 30px;
         }
 
         .support-card {
             background: var(--bg-card);
-            padding: 40px 30px;
+            padding: 30px 20px;
             border-radius: 16px;
             border: 1px solid #2d2d3a;
             transition: all 0.3s ease;
@@ -474,9 +506,9 @@
         }
 
         .support-icon-wrapper {
-            width: 80px;
-            height: 80px;
-            margin: 0 auto 25px;
+            width: 70px;
+            height: 70px;
+            margin: 0 auto 20px;
             background: rgba(108, 92, 231, 0.1);
             border-radius: 50%;
             display: flex;
@@ -485,42 +517,44 @@
         }
 
         .support-icon {
-            width: 40px;
-            height: 40px;
+            width: 35px;
+            height: 35px;
             color: var(--primary);
         }
 
         .support-card h3 {
             color: var(--text-main);
-            margin-bottom: 15px;
-            font-size: 1.4rem;
+            margin-bottom: 10px;
+            font-size: 1.3rem;
         }
 
         .support-card p {
             color: var(--text-muted);
-            line-height: 1.6;
+            line-height: 1.5;
+            font-size: 0.95rem;
         }
 
         /* FAQ Items */
         .faq-section {
             background: var(--bg-card);
-            padding: 40px;
+            padding: 30px 20px;
             border-radius: 16px;
             border: 1px solid #2d2d3a;
         }
 
         .faq-section h3 {
             color: var(--secondary);
-            margin-bottom: 25px;
-            font-size: 1.5rem;
+            margin-bottom: 20px;
+            font-size: 1.3rem;
             display: flex;
             align-items: center;
             gap: 10px;
+            flex-wrap: wrap;
         }
 
         .faq-item {
-            margin-bottom: 25px;
-            padding: 20px;
+            margin-bottom: 20px;
+            padding: 15px;
             background: rgba(108, 92, 231, 0.05);
             border-left: 4px solid var(--primary);
             border-radius: 8px;
@@ -533,8 +567,8 @@
         .faq-question {
             font-weight: 600;
             color: var(--text-main);
-            margin-bottom: 10px;
-            font-size: 1.1rem;
+            margin-bottom: 8px;
+            font-size: 1rem;
             display: flex;
             align-items: center;
             gap: 8px;
@@ -542,8 +576,9 @@
 
         .faq-answer {
             color: var(--text-muted);
-            line-height: 1.6;
+            line-height: 1.5;
             padding-left: 28px;
+            font-size: 0.95rem;
         }
 
         .faq-answer a {
@@ -558,17 +593,18 @@
 
         /* Instructions */
         .instructions {
-            padding: 60px 5%;
+            padding: 50px 5%;
             background: #0f0f13;
         }
 
         .section-title {
             text-align: center;
-            margin-bottom: 40px;
+            margin-bottom: 30px;
             display: flex;
             align-items: center;
             justify-content: center;
             gap: 10px;
+            font-size: 1.5rem;
         }
 
         .step {
@@ -579,44 +615,137 @@
 
         .step-num {
             background: var(--primary);
-            width: 30px;
-            height: 30px;
+            width: 28px;
+            height: 28px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             font-weight: bold;
-            margin-right: 15px;
+            margin-right: 12px;
             flex-shrink: 0;
+            font-size: 0.9rem;
+        }
+
+        .step h4 {
+            font-size: 1.05rem;
+            margin-bottom: 5px;
+        }
+
+        .step p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        .step p a {
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        .step p a:hover {
+            text-decoration: underline;
         }
 
         /* Footer */
         footer {
             text-align: center;
-            padding: 40px;
+            padding: 30px 20px;
             color: var(--text-muted);
             border-top: 1px solid #2d2d3a;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
         }
 
-        /* Responsive */
-        @media (max-width: 768px) {
-            .hero h1 { font-size: 2rem; }
-            .logo { font-size: 1.2rem; }
+        /* Tablet */
+        @media (min-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .features {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .support-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .price-comparison {
+                flex-wrap: nowrap;
+            }
+        }
+
+        /* Desktop */
+        @media (min-width: 1024px) {
+            .features {
+                grid-template-columns: repeat(4, 1fr);
+            }
+
+            .hero h1 {
+                font-size: 3rem;
+            }
+
             .platform-buttons {
-                flex-direction: column;
-                align-items: center;
+                flex-wrap: nowrap;
             }
+
             .platform-btn {
-                width: 100%;
-                max-width: 300px;
-                justify-content: center;
+                flex: none;
             }
-            .referral-header h2 { font-size: 2rem; flex-direction: column; }
-            .support-grid { grid-template-columns: 1fr; }
-            .faq-section { padding: 25px; }
-            .price-comparison { flex-direction: column; gap: 10px; }
-            .price-equals { transform: rotate(90deg); }
+        }
+
+        /* Small Mobile */
+        @media (max-width: 480px) {
+            .hero {
+                padding: 40px 15px 30px;
+            }
+
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+
+            .hero p {
+                font-size: 0.95rem;
+            }
+
+            .download-box {
+                padding: 20px 15px;
+            }
+
+            .download-box h3 {
+                font-size: 1.2rem;
+            }
+
+            .btn-large {
+                padding: 13px 25px;
+                font-size: 1rem;
+            }
+
+            .platform-btn {
+                min-width: 100px;
+                font-size: 0.85rem;
+                padding: 10px 15px;
+            }
+
+            .pricing-header h2 {
+                font-size: 1.4rem;
+            }
+
+            .price-value {
+                font-size: 1.3rem;
+            }
+
+            .referral-header h2 {
+                font-size: 1.6rem;
+            }
+
+            .support-header h2 {
+                font-size: 1.6rem;
+            }
+
+            .section-title {
+                font-size: 1.3rem;
+            }
         }
     </style>
 </head>
@@ -643,7 +772,7 @@
                 Подключить Per4eczVPN
             </a>
 
-            <h4 style="margin: 30px 0 20px; color: var(--text-main);">Скачать Hiddify</h4>
+            <h4>Скачать Hiddify</h4>
             <div class="platform-buttons">
                 <a href="https://github.com/hiddify/hiddify-app/releases" target="_blank" class="platform-btn windows">
                     <svg class="platform-icon" viewBox="0 0 24 24" fill="currentColor">
@@ -898,7 +1027,7 @@
                 <div class="step-num">1</div>
                 <div>
                     <h4>Скачайте приложение Hiddify</h4>
-                    <p style="color: var(--text-muted);">Установите официальный клиент <a href="https://github.com/hiddify/hiddify-app/releases" target="_blank" style="color: var(--primary);">Hiddify</a> для вашей операционной системы.</p>
+                    <p>Установите официальный клиент <a href="https://github.com/hiddify/hiddify-app/releases" target="_blank">Hiddify</a> для вашей операционной системы.</p>
                 </div>
             </div>
 
@@ -906,7 +1035,7 @@
                 <div class="step-num">2</div>
                 <div>
                     <h4>Получите подписку в боте</h4>
-                    <p style="color: var(--text-muted);">Перейдите в Telegram-бот, получите ссылку на подписку или пробный период.</p>
+                    <p>Перейдите в Telegram-бот, получите ссылку на подписку или пробный период.</p>
                 </div>
             </div>
 
@@ -914,7 +1043,7 @@
                 <div class="step-num">3</div>
                 <div>
                     <h4>Добавьте подписку в приложение</h4>
-                    <p style="color: var(--text-muted);">Скопируйте ссылку из бота и добавьте её в Hiddify через кнопку "Add Profile" → "From Clipboard".</p>
+                    <p>Скопируйте ссылку из бота и добавьте её в Hiddify через кнопку "Add Profile" → "From Clipboard".</p>
                 </div>
             </div>
 
@@ -922,7 +1051,7 @@
                 <div class="step-num">4</div>
                 <div>
                     <h4>Запустите соединение</h4>
-                    <p style="color: var(--text-muted);">В приложении выберите сервер и нажмите "Connect". Готово!</p>
+                    <p>В приложении выберите сервер и нажмите "Connect". Готово!</p>
                 </div>
             </div>
         </div>
