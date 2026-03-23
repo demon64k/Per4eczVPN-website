@@ -19,6 +19,8 @@
             --tiktok: #000000;
             --twitch: #9146ff;
             --telegram: #0088cc;
+            --boosty: #f15f2c;
+            --website: #00b894;
         }
 
         * {
@@ -255,6 +257,7 @@
             align-items: center;
             justify-content: center;
             padding: 20px;
+            overflow-y: auto;
         }
 
         .modal.active {
@@ -267,6 +270,8 @@
             padding: 40px 30px;
             max-width: 500px;
             width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
             border: 2px solid var(--primary);
             box-shadow: 0 20px 60px rgba(108, 92, 231, 0.3);
             animation: modalSlideIn 0.3s ease;
@@ -300,6 +305,7 @@
             justify-content: center;
             border-radius: 50%;
             transition: all 0.3s;
+            z-index: 10;
         }
 
         .modal-close:hover {
@@ -359,6 +365,16 @@
             background: rgba(0, 136, 204, 0.1);
         }
 
+        .social-link.boosty:hover {
+            border-color: var(--boosty);
+            background: rgba(241, 95, 44, 0.1);
+        }
+
+        .social-link.website:hover {
+            border-color: var(--website);
+            background: rgba(0, 184, 148, 0.1);
+        }
+
         .social-link-icon {
             width: 50px;
             height: 50px;
@@ -366,6 +382,8 @@
             align-items: center;
             justify-content: center;
             border-radius: 12px;
+            flex-shrink: 0;
+            overflow: hidden;
         }
 
         .social-link.tiktok .social-link-icon {
@@ -383,9 +401,32 @@
             color: white;
         }
 
+        .social-link.boosty .social-link-icon {
+            background: var(--boosty);
+            color: white;
+            background-image: url('https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/b1/d9/89/b1d989a3-18ed-97ff-6f5d-be08d9d0a1d5/AppIcon-0-0-1x_U007emarketing-0-8-0-85-220.png/1200x630wa.png');
+            background-size: cover;
+            background-position: center;
+        }
+
+        .social-link.website .social-link-icon {
+            background: var(--website);
+            color: white;
+        }
+
+        .social-link.boosty .social-link-icon svg {
+            display: none;
+        }
+
         .social-link-icon svg {
             width: 30px;
             height: 30px;
+        }
+
+        .social-link-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
 
         .social-link-info {
@@ -428,6 +469,16 @@
             background: linear-gradient(to right, var(--accent), var(--primary));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .rocket-icon {
+            width: 40px;
+            height: 40px;
+            color: var(--accent);
         }
 
         .performance-stats {
@@ -1174,6 +1225,31 @@
                     </div>
                     <div class="social-link-arrow">→</div>
                 </a>
+
+                <a href="https://dalink.to/per4ecz" target="_blank" class="social-link boosty">
+                    <div class="social-link-icon">
+                    </div>
+                    <div class="social-link-info">
+                        <div class="social-link-title">Boosty</div>
+                        <div class="social-link-desc">Поддержать проект</div>
+                    </div>
+                    <div class="social-link-arrow">→</div>
+                </a>
+
+                <a href="https://per4eczvpn.duckdns.org/" target="_blank" class="social-link website">
+                    <div class="social-link-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <line x1="2" y1="12" x2="22" y2="12"></line>
+                            <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+                        </svg>
+                    </div>
+                    <div class="social-link-info">
+                        <div class="social-link-title">Наш сайт</div>
+                        <div class="social-link-desc">per4eczvpn.duckdns.org</div>
+                    </div>
+                    <div class="social-link-arrow">→</div>
+                </a>
             </div>
         </div>
     </div>
@@ -1182,7 +1258,15 @@
     <section class="performance">
         <div class="performance-container">
             <div class="performance-info">
-                <h2>🚀 Высокая скорость и стабильность</h2>
+                <h2>
+                    <svg class="rocket-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"></path>
+                        <path d="M12 15l-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"></path>
+                        <path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"></path>
+                        <path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"></path>
+                    </svg>
+                    Высокая скорость и стабильность
+                </h2>
                 
                 <div class="performance-stats">
                     <div class="stat-item">
@@ -1243,7 +1327,7 @@
                 </div>
                 
                 <div class="pricing-note">
-                    Подписка на месяц стоит как <span>10-15 минут разговора по мобильной связи в Германии без тарифа</span> XD
+                    Подписка на месяц стоит как <span>10-15 минут разговора по мобильной связи в Германии без тарифа</span> <span style="color: var(--accent); font-weight: bold;">XD</span>
                 </div>
             </div>
         </div>
